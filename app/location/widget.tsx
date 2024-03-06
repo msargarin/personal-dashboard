@@ -93,7 +93,7 @@ export function LocationWidget({
             <input
               ref={locationSearchBox}
               type="text" className="p-2 pl-8 rounded border border-gray-200 bg-gray-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-              placeholder={ location ? location.city : 'seaarch city ...'}
+              placeholder={ location ? location.city : 'search city ...'}
               onChange={(e) => {
                 setInputLocation(e.target.value);
                 handleSearch();
