@@ -18,7 +18,7 @@ export function NewsList({
   showCategories: boolean,
   size?: number
 }) {
-  const location = useLocation();
+  const location:any = useLocation();
 
   const [newsList, setNewsList] = useState<NewsData[]>();
   const [newsAPIError, setNewsAPIError] = useState<boolean>(false);
@@ -251,8 +251,8 @@ export function NewsCategories({
                           return (
                             <li
                               className="pl-8 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-sky-50 hover:text-gray-900"
-                              key={category} data-id={category}
-                              onClick={(e) => handleSelectCategory(e.target?.dataset.id)}
+                              key={category}
+                              onClick={() => handleSelectCategory(`${category}`)}
                             >
                               {category}
                             </li>

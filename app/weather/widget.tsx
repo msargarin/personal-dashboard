@@ -8,7 +8,7 @@ export function WeatherWidget({
 } : {
   loadingLocation:boolean
 }) {
-  const location = useLocation();
+  const location:any = useLocation();
 
   const [weatherData, setWeatherData] = useState<WeatherData>();
 

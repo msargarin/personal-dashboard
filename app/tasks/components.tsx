@@ -4,14 +4,14 @@ import { useTasks } from "@/app/tasks/utils";
 
 // Task widget for front page
 export function TasksWidget() {
-  const tasks = useTasks();
+  const tasks:any = useTasks();
   const [loading, setLoading] = useState(true);
   const [pendingCount, setPendingCount] = useState(0);
 
   useEffect(() => {
     // Get pending tasks count once tasks becomes available
     if (tasks) {
-      setPendingCount(tasks.filter((t) => !t.done).length);
+      setPendingCount(tasks.filter((t:Task) => !t.done).length);
 
       // Unset loading flag
       setLoading(false);

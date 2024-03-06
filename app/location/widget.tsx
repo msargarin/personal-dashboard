@@ -4,13 +4,14 @@ import { MapPinIcon } from "@heroicons/react/24/solid";
 import { useDebouncedCallback } from "use-debounce";
 import { useRef, useState } from "react";
 import { useLocation, useSetLocation } from "@/app/location/utils";
+import { LocationData } from "@/app/data";
 
 export function LocationWidget({
   loadingLocation
 } : {
   loadingLocation:boolean
 }) {
-  const location = useLocation();
+  const location:any = useLocation();
   const setLocation = useSetLocation();
 
   const [searchResults, setSearchResults] = useState<Array<Object>>([]);
@@ -25,7 +26,7 @@ export function LocationWidget({
     setInputLocation('')
 
     // TODO: Fix focusing on location box
-    locationSearchBox.current?.focus();
+    // locationSearchBox.current?.focus();
 
     // Reset results
     setSearchResults([]);
@@ -58,7 +59,7 @@ export function LocationWidget({
 
   // Handle location selection
   const handleSelectLocation = (e:any) => {
-    let location = searchResults[e.target?.dataset.id];
+    let location:any = searchResults[e.target?.dataset.id];
 
     // Set current location
     if (setLocation){

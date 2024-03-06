@@ -7,10 +7,10 @@ import { fetchWeatherNowData, fetchWeatherForecastData } from '@/app/weather/uti
 import { useLocation } from "@/app/location/utils";
 
 export default function Weather() {
-  const location = useLocation();
+  const location:any = useLocation();
 
   const [weatherNowData, setWeatherNowData] = useState<WeatherData>();
-  const [weatherForecastData, setWeatherForecast] = useState();
+  const [weatherForecastData, setWeatherForecast] = useState<any>();
 
   useEffect(() => {
     // Execue weather now data fetch

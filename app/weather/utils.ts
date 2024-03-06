@@ -1,7 +1,7 @@
 import { LocationData, WeatherData } from "@/app/data";
 
 // Define function to fetch weather now
-export const fetchWeatherNowData = async (location: LocationData|null, setWeatherNowData: Function) => {
+export const fetchWeatherNowData = async (location: LocationData|undefined, setWeatherNowData: Function) => {
   try {
     // Only send request to weather API if location is available
     if (location && location.coordinates) {
@@ -18,7 +18,7 @@ export const fetchWeatherNowData = async (location: LocationData|null, setWeathe
 };
 
 // Define function to fetch weather forecast
-export const fetchWeatherForecastData = async (location: LocationData|null, setWeatherForecastData: Function) => {
+export const fetchWeatherForecastData = async (location: LocationData|undefined, setWeatherForecastData: Function) => {
   try {
     // Only send request to weather API if location is available
     if (location && location.coordinates) {
