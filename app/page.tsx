@@ -20,8 +20,10 @@ export default function Home() {
     // Check localstorage for location data
     let localStoreLocation = localStorage.getItem('location');
     if (localStoreLocation) {
-      // Set location if available
-      setLocation(JSON.parse(localStoreLocation));
+      if (setLocation){
+        // Set location if available
+        setLocation(JSON.parse(localStoreLocation));
+      }
 
       // Unset the loading location from localstore flag
       setLoadingLocation(false);
