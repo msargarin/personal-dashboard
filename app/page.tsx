@@ -19,10 +19,14 @@ export default function Home() {
   useEffect(() => {
     // Check localstorage for location data
     let localStoreLocation = localStorage.getItem('location');
-    if (localStoreLocation && setLocation) {
+    if (localStoreLocation) {
       // Set location if available
       setLocation(JSON.parse(localStoreLocation));
 
+      // Unset the loading location from localstore flag
+      setLoadingLocation(false);
+    } else {
+      // No location data in localstore
       // Unset the loading location from localstore flag
       setLoadingLocation(false);
     }
