@@ -57,9 +57,7 @@ export function NewsList({
 
       // Handle errors returned by API
       if (data.status === 'error'){
-        console.error('Error fetching news data:', data.results);
-
-        // Schedule another fetch in 2mins if error is due to rate limit
+        // Schedule another fetch in 30mins if error is due to rate limit
         if (data.results.code === 'RateLimitExceeded' || data.results.code === 'TooManyRequests'){
           // Set error flag to inform user
           setNewsAPIError(true);
@@ -67,7 +65,7 @@ export function NewsList({
           // Schedule another fetch
           setTimeout(() => {
             fetchNewsList(size, country_code);
-          }, 120000)
+          }, 1800000)
         }
       } else {
         // Load results to component
@@ -123,43 +121,45 @@ export function NewsList({
           <NewsCategories initializedCategories={initializedCategories} selectedCategories={selectedCategories} notSelectedCategories={notSelectedCategories} dispatchSelectedCategoriesReducer={dispatchSelectedCategoriesReducer} />
         : '' }
 
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-          { !newsList ? (
-            <span>
-              { loadingLocation ? "Loading location ..." : (
-                newsAPIError ? 'Sorry! We have encountered an error. We will try again shortly.' : 'Loading the latest news ...'
-              )}
-            </span>
-          ) : (
-            newsList.map((news, _) => {
-              return (
-                <div key={news.article_id} className="bg-white rounded-lg border p-4">
-                  <Image
-                    src={news.image_url}
-                    alt={news.title}
-                    height="200"
-                    width="300"
-                    className="w-full h-48 rounded-md object-cover"
-                  />
-                  <div className="px-1 py-3">
-                    <div className="font-bold text-xl mb-2">{news.title}</div>
-                    <p className="truncate text-gray-700 text-base pb-2">
-                      {news.description}
-                    </p>
-                    <Link
-                      href={news.link}
-                      target='_blank'
-                      className="text-blue-500 hover:underline flex items-center"
-                    >
-                      <span className="mr-1">Read more</span>
-                      <ArrowTopRightOnSquareIcon className="inline h-4 w-4" />
-                    </Link>
+        { !newsList ? (
+          <span className="w-full">
+            { loadingLocation ? "Loading location ..." : (
+              newsAPIError ? 'Sorry! We have encountered an error. We will try again shortly.' : 'Loading the latest news ...'
+            )}
+          </span>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+            {
+              newsList.map((news, _) => {
+                return (
+                  <div key={news.article_id} className="bg-white rounded-lg border p-4">
+                    <Image
+                      src={news.image_url}
+                      alt={news.title}
+                      height="200"
+                      width="300"
+                      className="w-full h-48 rounded-md object-cover"
+                    />
+                    <div className="px-1 py-3">
+                      <div className="font-bold text-xl mb-2">{news.title}</div>
+                      <p className="truncate text-gray-700 text-base pb-2">
+                        {news.description}
+                      </p>
+                      <Link
+                        href={news.link}
+                        target='_blank'
+                        className="text-blue-500 hover:underline flex items-center"
+                      >
+                        <span className="mr-1">Read more</span>
+                        <ArrowTopRightOnSquareIcon className="inline h-4 w-4" />
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              )
-            })
-          )}
-        </div>
+                )
+              })
+            }
+          </div>
+        )}
       </div>
     </div>
   );
