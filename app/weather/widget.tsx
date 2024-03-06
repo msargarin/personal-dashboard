@@ -37,8 +37,8 @@ export function WeatherWidget({
   return (
     <div className='rounded-xl bg-sky-300 py-4 text-2xl flex justify-center items-center h-[200px]'>
       {!location ? (
-        <span>
-          { loadingLocation ? "Loading location ..." : "Location not available" }
+        <span className="p-4 text-center">
+          { loadingLocation ? "Loading location ..." : <><div>Location not available.</div><div>Please provide your location above.</div></> }
         </span>
       ) : (
         !weatherData ? (
